@@ -2,7 +2,7 @@
 
 ## Description 
 
-To build the server-side component of a “movies” web application. The web application will provide users with access to information about different movies, directors, and genres. Users will be able to sign up, update their personal information, and create a list of their favorite movies. 
+The server-side component of a “movies” web application is beeing built. The web application provides users with access to information about different movies, directors, and genres. Users are able to sign up, update their personal information, and create a list of their favorite movies. 
 
 ## Key Features
 
