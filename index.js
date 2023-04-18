@@ -1,5 +1,5 @@
-const express = require("express");
-const morgan = require("morgan");
+const express = require("express"); // require express
+const morgan = require("morgan"); // require morgan
 const app = express();
 
 let topMovies = [
@@ -47,16 +47,13 @@ let topMovies = [
 ];
 
 app.use(morgan("common"));
-//app.use(express.static("public")); // express.static to serve “documentation.html” file from public folder 
-app.use('/documentation', express.static('public'));
+// express.static to serve “documentation.html” file from public folder 
+app.use(express.static("public"));
+
 // GET requests
 app.get('/', (req, res) => {
   res.send('Welcome to myFlix!');
 });
-
-//app.get('/documentation', (req, res) => {                  
- //res.sendFile('public/documentation.html', { root: __dirname });
-//});
 
 app.get('/movies', (req, res) => {
   res.json(topMovies);
