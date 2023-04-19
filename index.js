@@ -46,13 +46,17 @@ let topMovies = [
 
 ];
 
+app.use(express.static("public")); // express.static to serve “documentation.html” file from public folder 
+
 app.use(morgan("common"));
-// express.static to serve “documentation.html” file from public folder 
-app.use(express.static("public"));
 
 // GET requests
 app.get('/', (req, res) => {
   res.send('Welcome to myFlix!');
+});
+
+app.get('/documentation', (req, res) => {
+  res.sendFile('public/documentation.html', { root: __dirname });
 });
 
 app.get('/movies', (req, res) => {
