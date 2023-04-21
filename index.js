@@ -19,31 +19,6 @@ let topMovies = [
     title: 'Blue Valentine',
     author: 'Derek Cianfrance'
   }, 
-  {
-    title: 'A Star Is Born',
-    author: 'Bradley Cooper'
-  },
-  {
-    title: 'A Star Is Born',
-    author: 'Bradley Cooper'
-  },
-  {
-    title: 'A Star Is Born',
-    author: 'Bradley Cooper'
-  },
-  {
-    title: 'A Star Is Born',
-    author: 'Bradley Cooper'
-  },
-  {
-    title: 'A Star Is Born',
-    author: 'Bradley Cooper'
-  },
-  {
-    title: 'A Star Is Born',
-    author: 'Bradley Cooper'
-  }
-
 ];
 
 app.use(express.static("public")); // express.static to serve “documentation.html” file from public folder 
