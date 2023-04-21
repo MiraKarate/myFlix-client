@@ -15,7 +15,7 @@
         padding: .3em .5em; 
         text-align: center;
       }
-      
+
       th {
         font-weight: bold;
       }
@@ -59,25 +59,37 @@
         <td>/movies</td>
         <td>GET</td>
         <td>None</td>
-        <td>A JSON object holding data about all the students</td>
+        <td>A JSON object holding data about all the movies</td>
       </tr>
       <tr>
         <td>Return data about a single movie by title to the user</td>
         <td>/movies/:title</td>
         <td>GET</td>
         <td>None</td>
-        <td>A JSON object holding data about a single requested movie, containg: ...</td>
+        <td>A JSON object holding data about a single requested movie, containg: <br> 
+          {"Title":"A Star Is Born", <br> 
+          "Description":"A Star Is Born is a 2018 American romantic drama film produced and directed by Bradley Cooper ...",<br> 
+          "Genre":{ <br> 
+                    "Name":"Romantic Drama",<br> 
+                    "Description":"Romance films, romance movies, or ship films involve romantic love stories recorded ...",<br> 
+                  },<br> 
+          "Director"{<br> 
+                    "Bio":" Bradley Charles Cooper (born January 5, 1975) ..."<br> 
+                    "Birth":1975<br> 
+                    },<br> 
+          }
+          </td>
       </tr>
       <tr>
         <td> Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
-        <td>/movies/:genre</td>
+        <td>'/movies/genre/:genreName</td>
         <td>GET</td>
         <td>None</td>
         <td>A JSON object holding data about a genre (description)</td>
       </tr>
       <tr>
         <td>Return data about a director (bio, birth year, death year) by name</td>
-        <td>/movies/:director</td>
+        <td>/movies/directors/:directorName</td>
         <td>GET</td>
         <td>None</td>
         <td>A JSON object holding data about a director</td>
@@ -86,41 +98,53 @@
         <td>Allow new users to register</td>
         <td>/users</td>
         <td>POST</td>
-        <td>A JSON object holding data about the user to register/add, structed like:
-          name: "Paulin Gomez",
-          .... </td>
-        <td>A JSON object holding data about the new user, including an ID: 
-          ...
+        <td>A JSON object holding data about the user to register/add, structed like:<br> 
+          {<br> 
+            "name": "Paulina Gomez",<br> 
+            "favoriteMovies": "A Star Is Born",<br> 
+        }
+        </td>
+        <td>A JSON object holding data about the new user, including an ID: <br> 
+          {<br> 
+            name: "Paulina Gomez",<br> 
+            favoriteMovies: "A Star Is Born",<br> 
+            id: "number",<br> 
+          }<br> 
         </td>
       </tr>
       <tr>
         <td>Allow users to update their user info (username)</td>
-        <td>/users/:ID/username</td>
+        <td>/users/:id</td>
         <td>PUT</td>
-        <td>None</td>
+        <td>A JSON object holding data about the user to update, structed like:<br> 
+          {<br> 
+            "name": "Paulina Salty",<br> 
+            "favoriteMovies": "A Star Is Born",<br> 
+          }
+        </td>
         <td>A text message indicating the user info (username) that was updated</td>
       </tr>
       <tr>
-        <td>Allow users to add a movie to their list of favorites (showing only a text that a movie has been added—more on this later)</td>
-        <td>/users/:ID/</td>
+        <td>Allow users to add a movie to their list of favorites</td>
+        <td>/users/:id/:movieTitle</td>
         <td>POST</td>
-        <td>A JSON </td>
-        <td>A text message indicating the user info (username) that was updated</td>
+        <td>none </td>
+        <td>A text message that a movie has been added</td>
       </tr> 
       <tr>
-        <td>Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed—more on this later)</td>
-        <td>/users/:ID/favorites/movieTitle</td>
+        <td>Allow users to remove a movie from their list of favorites</td>
+        <td>/users/:id/:movieTitle</td>
         <td>DELETE</td>
         <td>None</td>
         <td>A text message indicating whether the movie was successfully removed from list of favorites</td>
       </tr>
       <tr>
-        <td>Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)
+        <td>Allow existing users to deregister (showing only a text that a user ID has been removed—more on this later)
         </td>
-        <td>/users/:ID/</td>
+        <td>/users/:id'</td>
         <td>DELETE</td>
         <td>None</td>
-        <td>A text message indicating whether a user email has been removed</td>
+        <td>A text message indicating whether a user ID has been removed</td>
       </tr>
     </table>
   </body>
