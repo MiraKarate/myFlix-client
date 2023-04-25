@@ -81,18 +81,29 @@
           </td>
       </tr>
       <tr>
-        <td> Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
-        <td>'/movies/genre/:genreName</td>
+        <td> Return data about a genre (description) by name/title (e.g., “Fantasy”)</td>
+        <td>/movies/genre/:genreName</td>
         <td>GET</td>
         <td>None</td>
-        <td>A JSON object holding data about a genre (description)</td>
+        <td>A JSON object holding data about a genre (description), containg: <br>
+          Genre: { <br>
+            Name: 'Fantasy', <br>
+            Description: 'Fantasy is a subgenre of speculative fiction and is distinguished from the genres of science fiction and ...',<br>
+          },<br>
+        </td>
       </tr>
       <tr>
         <td>Return data about a director (bio, birth year, death year) by name</td>
         <td>/movies/directors/:directorName</td>
         <td>GET</td>
         <td>None</td>
-        <td>A JSON object holding data about a director</td>
+        <td>A JSON object holding data about a director, containing: <br>
+          Director: { <br>
+            Name: 'Steven Spielberg', <br>
+            Bio: 'Steven Allan Spielberg is an American filmmaker. A major figure of the New Hollywood era ...', <br>
+            Birth: 1946,<br>
+          },<br>
+        </td>
       </tr>
       <tr>
         <td>Allow new users to register</td>
@@ -139,9 +150,8 @@
         <td>A text message indicating whether the movie was successfully removed from list of favorites</td>
       </tr>
       <tr>
-        <td>Allow existing users to deregister (showing only a text that a user ID has been removed—more on this later)
-        </td>
-        <td>/users/:id'</td>
+        <td>Allow existing users to deregister</td>
+        <td>/users/:id</td>
         <td>DELETE</td>
         <td>None</td>
         <td>A text message indicating whether a user ID has been removed</td>
