@@ -111,47 +111,58 @@
         <td>POST</td>
         <td>A JSON object holding data about the user to register/add, structed like:<br> 
           {<br> 
-            "name": "Paulina Gomez",<br> 
-            "favoriteMovies": "A Star Is Born",<br> 
+            Username: String,<br>
+            Password: String,<br>
+            Email: String,<br>
+            Birthday: Date,<br> 
         }
         </td>
         <td>A JSON object holding data about the new user, including an ID: <br> 
           {<br> 
-            name: "Paulina Gomez",<br> 
-            favoriteMovies: "A Star Is Born",<br> 
-            id: "number",<br> 
+            {
+              "_id": "64538918a28056b722eaeaf0",<br>
+              "Username": "Lottalu",<br>
+              "Password": "watching5",<br>
+              "Email": "lotta@gmail.com",<br>
+              "Birthday": "1993-05-03T00:00:00.000Z",<br>
+              "FavoriteMovies": []<br>
+          },<br> 
           }<br> 
         </td>
       </tr>
       <tr>
         <td>Allow users to update their user info (username)</td>
-        <td>/users/:id</td>
+        <td>/users/:Username</td>
         <td>PUT</td>
         <td>A JSON object holding data about the user to update, structed like:<br> 
-          {<br> 
-            "name": "Paulina Salty",<br> 
-            "favoriteMovies": "A Star Is Born",<br> 
-          }
+            {<br> 
+              "_id": "64538918a28056b722eaeaf0",<br>
+              "Username": "Lottalu",<br>
+              "Password": "watching333",<br>
+              "Email": "lotta@gmail.com",<br>
+              "Birthday": "1993-05-03T00:00:00.000Z",<br>
+              "FavoriteMovies": []<br>
+          },<br> 
         </td>
-        <td>A text message indicating the user info (username) that was updated</td>
+        <td>A JSON object holding data about the updated user</td>
       </tr>
       <tr>
         <td>Allow users to add a movie to their list of favorites</td>
-        <td>/users/:id/:movieTitle</td>
+        <td>/users/:Username/movies/:MovieID</td>
         <td>POST</td>
         <td>none </td>
         <td>A text message that a movie has been added</td>
       </tr> 
       <tr>
         <td>Allow users to remove a movie from their list of favorites</td>
-        <td>/users/:id/:movieTitle</td>
+        <td>/users/:Username/movies/:MovieID</td>
         <td>DELETE</td>
         <td>None</td>
         <td>A text message indicating whether the movie was successfully removed from list of favorites</td>
       </tr>
       <tr>
         <td>Allow existing users to deregister</td>
-        <td>/users/:id</td>
+        <td>/users/:Username</td>
         <td>DELETE</td>
         <td>None</td>
         <td>A text message indicating whether a user ID has been removed</td>
