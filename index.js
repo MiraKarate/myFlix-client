@@ -144,15 +144,6 @@ app.get('/users/:Username', (req, res) => {
 });
 
 //Allow new users to register
-/* We’ll expect JSON in this format
-{
-  ID: Integer,
-  Username: String,
-  Password: String,
-  Email: String,
-  Birthday: Date
-}*/
-
 app.post('/users', [check('Username', 'Username is required').isLength({min: 5}),
 check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
 check('Password', 'Password is required').not().isEmpty(),
