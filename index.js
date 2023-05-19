@@ -1,38 +1,41 @@
-const mongoose = require('mongoose');
-const Models = require('./models.js');
-const { check, validationResult } = require('express-validator');
+const bodyParser = require('body-parser'),// require bodyparser
+      express = require('express'), // require express
+      morgan = require('morgan'), // require morgan
+      uuid = require('uuid'),
+      mongoose = require('mongoose'),
+      Models = require('./models.js'),
+      { check, validationResult } = require('express-validator');
 
 const Movies = Models.Movie;
 const Users = Models.User;
 
-// mongoose.connect('mongodb://localhost:27017/myflix', { useNewUrlParser: true, useUnifiedTopology: true }); // local database
-mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true }); // online database
+const app = express();
 
+const cors = require('cors');
+app.use(cors({origin: '*'}))
 
-const bodyParser = require('body-parser'),// require bodyparser
-      express = require('express'), // require express
-      app = express(),
-      morgan = require('morgan'), // require morgan
-      uuid = require('uuid');
+// let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+
+// app.use(cors({
+//  origin: (origin, callback) => {
+//    if(!origin) return callback(null, true);
+//    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
+//     let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+//      return callback(new Error(message ), false);
+//    }
+//    return callback(null, true);
+//  }
+//}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public")); // express.static to serve “documentation.html” file from public folder 
 app.use(morgan("common"));
 
-const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
-      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
-      return callback(new Error(message ), false);
-    }
-    return callback(null, true);
-  }
-}));
+// mongoose.connect('mongodb://localhost:27017/myflix', { useNewUrlParser: true, useUnifiedTopology: true }); // local database
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true }); // online database
+
 
 let auth = require('./auth')(app);
 const passport = require('passport');
@@ -117,7 +120,7 @@ app.get('/movies/directors/:directorName', passport.authenticate('jwt', { sessio
 // USERS//
 
 // Get all users
-app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/users', (req, res) => {
   Users.find()
     .then((users) => {
       res.status(201).json(users);
@@ -129,7 +132,7 @@ app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) =
 });
 
 // Get a user by username
-app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/users/:Username', (req, res) => {
   Users.findOne({ Username: req.params.Username })
     .then((user) => {
       res.json(user);
@@ -177,7 +180,7 @@ check('Email', 'Email does not appear to be valid').isEmail()
             Birthday: req.body.Birthday
           })
           .then((user) => { res.status(201).json(user) })
-          .catch((error) => {
+        .catch((error) => {
             console.error(error);
             res.status(500).send('Error: ' + error);
           });
