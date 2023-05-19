@@ -14,23 +14,16 @@ passport.use(new LocalStrategy({
   console.log(username + '  ' + password);
   Users.findOne({ Username: username })
         .then((user) => {
-          if (!user) {
+          if (!user.validatePassword(password)) {
             console.log("incorrect password");
             return callback(null, false, { message: "Incorrect password." });
           }
-
-          if (!user.validatePassword(password)) {
-            console.log('incorrect password');
-            return callback(null, false, {message: 'Incorrect password.'});
-          }
-
-          console.log('finished');
           return callback(null, user);
         })
         .catch((e) =>
           callback(null, false, { message: "Incorrect username or password." })
         );
-      }));
+}));
 
 passport.use(new JWTStrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
