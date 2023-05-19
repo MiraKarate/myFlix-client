@@ -184,7 +184,11 @@ check('Email', 'Email does not appear to be valid').isEmail()
 });
 
 // Allow users to update their user info (username, password, email, date of birth)
-app.put('/users/:Username', (req, res) => {
+app.put('/users/:Username', [check('Username', 'Username is required').isLength({min: 5}),
+check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+check('Password', 'Password is required').not().isEmpty(),
+check('Email', 'Email does not appear to be valid').isEmail()
+], (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
     $set:
     {
