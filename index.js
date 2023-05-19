@@ -188,7 +188,7 @@ app.put('/users/:Username', [check('Username', 'Username is required').isLength(
 check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
 check('Password', 'Password is required').not().isEmpty(),
 check('Email', 'Email does not appear to be valid').isEmail()
-], (req, res) => {
+], passport.authenticate('jwt', {session: false}), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
     $set:
     {
