@@ -12,8 +12,8 @@ handle data through the (previously defined) REST API endpoints.
 
 ### Main view
 
-● Returns ALL movies to the user (each movie item with an image, title, and description)
-● Filtering the list of movies with a “search” feature
-● Ability to select a movie for more details
-● Ability to log out
-● Ability to navigate to Profile view
++ Returns ALL movies to the user (each movie item with an image, title, and description)
++ Filtering the list of movies with a “search” feature
++ Ability to select a movie for more details
++ Ability to log out
++ Ability to navigate to Profile view
