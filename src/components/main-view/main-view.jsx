@@ -11,15 +11,13 @@ export const MainView = () => {
     const [token, setToken] = useState(storedToken ? storedToken : null);
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        if (!token) {
+        if (!token)
             return;
-        }
-        setLoading(true);
+
         fetch("https://myflix90.herokuapp.com/movies", {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => response.json())
             .then((data) => {
@@ -56,12 +54,13 @@ export const MainView = () => {
     if (selectedMovie) {
         return (
             <>
+                <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
                 <button onClick={() => {
                     setUser(null); setToken(null); localStorage.clear();
                 }}
                 > Logout
                 </button>
-                <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+
             </>
         );
     }
@@ -71,27 +70,23 @@ export const MainView = () => {
     }
 
     return (
-        loading ? (
-            <p>Loading...</p>
-        ) : !movies || !movies.length ? (
-            <p>No movies found</p>
-        ) : (
-            <div>
-                <button onClick={() => {
-                    setUser(null); setToken(null); localStorage.clear();
-                }}
-                > Logout
-                </button>
+        <div>
+            {movies.map((movie) => (
+                <MovieCard
+                    key={movie.id}
+                    movie={movie}
+                    onMovieClick={(newSelectedMovie) => {
+                        setSelectedMovie(newSelectedMovie);
+                    }}
+                />
+            ))}
 
-                {movies.map((movie) => (
-                    <MovieCard
-                        key={movie.id}
-                        movie={movie}
-                        onMovieClick={(newSelectedMovie) => {
-                            setSelectedMovie(newSelectedMovie);
-                        }}
-                    />
-                ))}
-            </div>
-        ));
+            <button onClick={() => {
+                setUser(null); setToken(null); localStorage.clear();
+            }}
+            > Logout
+            </button>
+
+        </div>
+    );
 };
