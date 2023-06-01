@@ -27157,6 +27157,7 @@ var _movieView = require("../movie-view/movie-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
+<<<<<<< Updated upstream
     const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
@@ -27174,19 +27175,56 @@ const MainView = ()=>{
             setMovies(movies);
         });
     }, []);
+=======
+    const [movies, setMovies] = (0, _react.useState)([
+        {
+            id: 1,
+            title: "Call Me by Your Name",
+            description: "Call Me by Your Name (Italian: Chiamami col tuo nome) is a 2017 coming-of-age romantic drama film directed by Luca Guadagnino. Its screenplay, by James Ivory, who also co-produced, is based on the 2007 novel of the same title by Andr\xe9 Aciman. The film is the final instalment in Guadagnino's thematic Desire trilogy, after I Am Love (2009), and A Bigger Splash (2015). Set in 1983 in northern Italy, Call Me by Your Name chronicles the romantic relationship between a 17-year-old, Elio Perlman (Timoth\xe9e Chalamet), and Oliver (Armie Hammer), a 24-year-old graduate-student assistant to Elio''s father Samuel (Michael Stuhlbarg), an archaeology professor.",
+            genre: "Romantic Drama",
+            director: "Luca Guadagnino",
+            image: "https://upload.wikimedia.org/wikipedia/en/c/c9/CallMeByYourName2017.png"
+        },
+        {
+            id: 2,
+            title: "West Side Story",
+            description: "West Side Story is a 2021 American musical romantic drama film directed and co-produced by Steven Spielberg from a screenplay by Tony Kushner. It is the second feature-length adaptation of the 1957 stage musical of the same name. It stars Ansel Elgort and Rachel Zegler in her film debut with Ariana DeBose, David Alvarez, Mike Faist, and Rita Moreno in supporting roles. Moreno, who starred in the 1961 film adaptation, also served as an executive producer alongside Kushner. The film features music composed by Leonard Bernstein with lyrics by Stephen Sondheim.",
+            genre: "Musical",
+            director: "Steven Spielberg",
+            image: "https://upload.wikimedia.org/wikipedia/en/2/2e/West_Side_Story_2021_Official_Poster.jpg"
+        },
+        {
+            id: 3,
+            title: "Blade Runner",
+            description: "Blade Runner is a 1982 science fiction film directed by Ridley Scott, and written by Hampton Fancher and David Peoples. Starring Harrison Ford, Rutger Hauer, Sean Young, and Edward James Olmos, it is an adaptation of Philip K. Dick's 1968 novel Do Androids Dream of Electric Sheep? The film is set in a dystopian future Los Angeles of 2019, in which synthetic humans known as replicants are bio-engineered by the powerful Tyrell Corporation to work on space colonies. When a fugitive group of advanced replicants led by Roy Batty (Hauer) escapes back to Earth, burnt-out cop Rick Deckard (Ford) reluctantly agrees to hunt them down.",
+            genre: "Science Fiction",
+            director: "Ridley Scott",
+            image: "https://upload.wikimedia.org/wikipedia/en/9/9f/Blade_Runner_%281982_poster%29.png"
+        }
+    ]);
+    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+>>>>>>> Stashed changes
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
+<<<<<<< Updated upstream
         lineNumber: 30,
+=======
+        lineNumber: 40,
+>>>>>>> Stashed changes
         columnNumber: 13
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
+<<<<<<< Updated upstream
         lineNumber: 35,
+=======
+        lineNumber: 45,
+>>>>>>> Stashed changes
         columnNumber: 16
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27197,16 +27235,28 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
+<<<<<<< Updated upstream
                 lineNumber: 41,
+=======
+                lineNumber: 51,
+>>>>>>> Stashed changes
                 columnNumber: 17
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
+<<<<<<< Updated upstream
         lineNumber: 39,
         columnNumber: 9
     }, undefined);
 };
 _s(MainView, "PO+XgOji7E32nFJj3H5UPLPJ7w4=");
+=======
+        lineNumber: 49,
+        columnNumber: 9
+    }, undefined);
+};
+_s(MainView, "92ZsvH+uOwBZsud6q8U54c9mPrE=");
+>>>>>>> Stashed changes
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27223,13 +27273,19 @@ var prevRefreshSig = window.$RefreshSig$;
 $parcel$ReactRefreshHelpers$67b2.prelude(module);
 
 try {
+<<<<<<< Updated upstream
 // Here you import the PropTypes library
+=======
+>>>>>>> Stashed changes
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MovieCard", ()=>MovieCard);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
+<<<<<<< Updated upstream
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+=======
+>>>>>>> Stashed changes
 const MovieCard = ({ movie , onMovieClick  })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         onClick: ()=>{
@@ -27238,11 +27294,16 @@ const MovieCard = ({ movie , onMovieClick  })=>{
         children: movie.title
     }, void 0, false, {
         fileName: "src/components/movie-card/movie-card.jsx",
+<<<<<<< Updated upstream
         lineNumber: 7,
+=======
+        lineNumber: 3,
+>>>>>>> Stashed changes
         columnNumber: 9
     }, undefined);
 };
 _c = MovieCard;
+<<<<<<< Updated upstream
 // Define the prop types this component should have
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
@@ -27258,6 +27319,8 @@ MovieCard.propTypes = {
     }).isRequired,
     onBackClick: (0, _propTypesDefault.default).func.isRequired
 };
+=======
+>>>>>>> Stashed changes
 var _c;
 $RefreshReg$(_c, "MovieCard");
 
@@ -27266,7 +27329,11 @@ $RefreshReg$(_c, "MovieCard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
+<<<<<<< Updated upstream
 },{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2"}],"gkKU3":[function(require,module,exports) {
+=======
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gkKU3":[function(require,module,exports) {
+>>>>>>> Stashed changes
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -27429,6 +27496,7 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
+<<<<<<< Updated upstream
 },{"fb2063567ae073d9":"786KC"}],"7wKI2":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -28177,6 +28245,9 @@ printWarning = function(text) {
 module.exports = checkPropTypes;
 
 },{"38f9a9e7ee480c05":"jZTZJ","ca5fd6d9c78d126a":"fqKuf"}],"ggaUx":[function(require,module,exports) {
+=======
+},{"fb2063567ae073d9":"786KC"}],"ggaUx":[function(require,module,exports) {
+>>>>>>> Stashed changes
 var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -28335,6 +28406,10 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
+<<<<<<< Updated upstream
 },{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2"}],"lJZlQ":[function() {},{}]},["1xC6H","7a1Sg","d8Dch"], "d8Dch", "parcelRequireaec4")
+=======
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lJZlQ":[function() {},{}]},["1xC6H","7a1Sg","d8Dch"], "d8Dch", "parcelRequireaec4")
+>>>>>>> Stashed changes
 
 //# sourceMappingURL=index.b4b6dfad.js.map
