@@ -43,7 +43,7 @@ require('./passport');
 
 // READ 
 app.get('/', (req, res) => {
-  res.send('Welcome to myFlix!');
+  res.send("Welcome to myFlix!");
 });
 
 // READ
