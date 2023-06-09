@@ -50,7 +50,7 @@ export const MainView = () => {
                     <SignupView />
                 </Col>
             ) : selectedMovie ? (
-                <Col md {8} style={{ border: "1px solid black" }}>
+                <Col md={8} style={{ border: "1px solid black" }}>
                     <MovieView
                         movie={selectedMovie}
                         onBackClick={() => setSelectedMovie(null)}
@@ -59,9 +59,9 @@ export const MainView = () => {
             ) : movies.length === 0 ? (
                 <div>The list is empty!</div>
             ) : (
-                {
-                    movies.map((movie) => (
-                        <Col className="m-5" key={book.id} md{3}>
+                <>
+                    {movies.map((movie) => (
+                        <Col className="m-5" key={book.id} md={3}>
                             <MovieCard
                                 movie={movie}
                                 onMovieClick={(newSelectedMovie) => {
@@ -69,15 +69,10 @@ export const MainView = () => {
                                 }}
                             />
                         </Col>
-                    ))
-                }
-            )
-            }
+                    ))}
+                </>
+            )}
         </Row>
     );
+};
 
-    <button onClick={() => {
-        setUser(null); setToken(null); localStorage.clear();
-    }}
-    > Logout
-    </button>
