@@ -27342,7 +27342,7 @@ const MovieCard = ({ movie , onMovieClick  })=>{
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                        className: "button",
+                        className: "button-primary",
                         onClick: ()=>onMovieClick(movie),
                         children: "Open"
                     }, void 0, false, {
@@ -40883,6 +40883,7 @@ const MovieView = ({ movie , onBackClick  })=>{
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "margin",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         className: "bold",
@@ -40906,6 +40907,7 @@ const MovieView = ({ movie , onBackClick  })=>{
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "margin",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         className: "bold",
@@ -40929,6 +40931,7 @@ const MovieView = ({ movie , onBackClick  })=>{
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "margin",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         className: "bold",
@@ -40952,6 +40955,7 @@ const MovieView = ({ movie , onBackClick  })=>{
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "margin",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         className: "bold",

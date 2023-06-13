@@ -41,6 +41,10 @@ body {
   font-weight: bold;
 }
 
+.margin {
+  margin: 7px;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -13269,6 +13273,20 @@ textarea.form-control-lg {
 
 .my-flix {
   color: #000;
+}
+
+.button-primary {
+  color: #e5ecf4;
+  width: 70px;
+  background-color: #000;
+  border: 2px solid #000;
+  border-radius: 4px;
+  margin-top: 10px;
+  padding: 4px 12px;
+}
+
+.card {
+  border: 2px solid #000;
 }
 
 /*# sourceMappingURL=index.e3f97e84.css.map */

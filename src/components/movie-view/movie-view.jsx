@@ -8,19 +8,19 @@ export const MovieView = ({ movie, onBackClick }) => {
             <div>
                 <img src={movie.image} className="w-100" />
             </div>
-            <div>
+            <div className='margin'>
                 <span className="bold">Title: </span>
                 <span>{movie.title}</span>
             </div>
-            <div>
+            <div className='margin'>
                 <span className="bold">Description: </span>
                 <span>{movie.description}</span>
             </div>
-            <div>
+            <div className='margin'>
                 <span className="bold">Genre: </span>
                 <span>{movie.genre.Name}</span>
             </div>
-            <div>
+            <div className='margin'>
                 <span className="bold">Director: </span>
                 <span>{movie.director.Name}</span>
             </div>
