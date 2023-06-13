@@ -24,7 +24,7 @@ export const MovieView = ({ movie, onBackClick }) => {
                 <span className="bold">Director: </span>
                 <span>{movie.director.Name}</span>
             </div>
-            <button onClick={onBackClick} className="back-button" style={{ cursor: "pointer" }}> Back </button>
+            <button onClick={onBackClick} className="button-primary" style={{ cursor: "pointer" }}> Back </button>
         </div >
     );
 };

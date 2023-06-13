@@ -13277,7 +13277,7 @@ textarea.form-control-lg {
 
 .button-primary {
   color: #e5ecf4;
-  width: 70px;
+  width: 100px;
   background-color: #000;
   border: 2px solid #000;
   border-radius: 4px;
@@ -13287,6 +13287,19 @@ textarea.form-control-lg {
 
 .card {
   border: 2px solid #000;
+}
+
+.formControl {
+  background-color: #e5ecf4;
+  border: 1px solid #000;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  border: 2px solid #000;
+  border-radius: 4px;
+  margin: 20px;
 }
 
 /*# sourceMappingURL=index.e3f97e84.css.map */
