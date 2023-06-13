@@ -6,6 +6,8 @@ import { SignupView } from "../signup-view/signup-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import './main-view.scss';
+
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
@@ -38,6 +40,12 @@ export const MainView = () => {
             });
     }, [token]);
 
+    const onLoggedOut = () => {
+        setUser(null);
+        setToken(null);
+        localStorage.clear();
+    };
+
     // user must login or signup
     return (
         <Row className="justify-content-md-center">
@@ -51,9 +59,8 @@ export const MainView = () => {
                     <SignupView />
                 </Col>
             ) : selectedMovie ? (
-                <Col md={8} style={{ border: "1px solid black" }}>
+                <Col md={8}>
                     <MovieView
-                        style={{ border: "1px solid green" }}
                         movie={selectedMovie}
                         onBackClick={() => setSelectedMovie(null)}
                     />
@@ -63,7 +70,7 @@ export const MainView = () => {
             ) : (
                 <>
                     {movies.map((movie) => (
-                        <Col className="m-5" key={movie.id} md={3}>
+                        <Col className="m-5" key={movie.id} md={3} >
                             <MovieCard
                                 movie={movie}
                                 onMovieClick={(newSelectedMovie) => {
@@ -72,8 +79,14 @@ export const MainView = () => {
                             />
                         </Col>
                     ))}
+                    <button className="button" onClick={() => {
+                        setUser(null); setToken(null); localStorage.clear();
+                    }}
+                    > Logout
+                    </button>
                 </>
             )}
+
         </Row>
     );
 };

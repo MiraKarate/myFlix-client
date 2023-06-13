@@ -1,5 +1,7 @@
-.bold {
-    font-weight: bold;
+.blackborder {
+    background-color: rgb(229, 236, 244);
+    border: 2px solid black;
+    border-radius: 4px;
 }
 
 .button {
@@ -8,7 +10,5 @@
     background-color: black;
     border: none;
     border-radius: 4px;
-    width: 70px;
-    margin-top: 10px;
-    border: 2px solid black;
+    width: 100px; //not working?
 }
