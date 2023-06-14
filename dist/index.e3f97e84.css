@@ -45,6 +45,10 @@ body {
   margin: 7px;
 }
 
+.image {
+  height: 60%;
+}
+
 .bold {
   font-weight: bold;
 }
