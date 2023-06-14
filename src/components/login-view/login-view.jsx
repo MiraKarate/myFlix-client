@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Button, Form, Row, Col, Container, CardGroup, Card } from "react-bootstrap/";
+
 
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState("");
@@ -38,29 +40,34 @@ export const LoginView = ({ onLoggedIn }) => {
     };
 
     // login form with submit button
+    // handleSubmit is the callback of onSubmit, tells the login API to validate user and password
     return (
-        // handleSubmit is the callback of onSubmit, tells the login API to validate user and password
-        <form onSubmit={handleSubmit}>
-            <label>
-                Username:
-                <input
+        <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formUsername">
+                <Form.Label className="bold">Username:</Form.Label>
+                <Form.Control
+                    className="formControl"
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
-                    minLength="5"
+                    minLength="3"
                 />
-            </label>
-            <label>
-                Password:
-                <input
+            </Form.Group>
+
+            <Form.Group controlId="formPassword">
+                <Form.Label className="bold">Password:</Form.Label>
+                <Form.Control
+                    className="formControl"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-            </label>
-            <button type="submit">Submit</button>
-        </form>
+            </Form.Group>
+            <Button className="button-primary" type="submit">
+                Submit
+            </Button>
+        </Form>
     );
 }; 
