@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { Button, Form, Card, CardGroup, Container, Col, Row } from "react-bootstrap";
+import './signup-view.scss';
+
 
 export const SignupView = () => {
     const [username, setUsername] = useState("");
@@ -36,46 +39,60 @@ export const SignupView = () => {
     };
 
     // signup form with submit button
+    // handleSubmit is the callback of onSubmit, tells the login API to validate user and password
     return (
-        // handleSubmit is the callback of onSubmit, tells the login API to validate user and password
-        <form onSubmit={handleSubmit}>
-            <label>
-                Username:
-                <input
+        <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formUsername">
+                <Form.Label className="bold">Username:</Form.Label>
+                <Form.Control
+                    className="formControl"
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
+                    minLength="3"
+                    placeholder="Enter a username"
                 />
-            </label>
-            <label>
-                Password:
-                <input
+            </Form.Group>
+
+            <Form.Group controlId="formPassword">
+                <Form.Label className="bold">Password:</Form.Label>
+                <Form.Control
+                    className="formControl"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    minLength="8"
+                    placeholder="Your Password must be 8 or more characters"
                 />
-            </label>
-            <label>
-                Email:
-                <input
+            </Form.Group>
+
+            <Form.Group controlId="formEmail">
+                <Form.Label className="bold">Email:</Form.Label>
+                <Form.Control
+                    className="formControl"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    placeholder="Enter your email adress"
                 />
-            </label>
-            <label>
-                Birthday:
-                <input
+            </Form.Group>
+
+            <Form.Group controlId="formBirthday">
+                <Form.Label className="bold">Birthday:</Form.Label>
+                <Form.Control
+                    className="formControl"
                     type="date"
                     value={birthday}
                     onChange={(e) => setBirthday(e.target.value)}
                     required
                 />
-            </label>
-            <button type="submit">Submit</button>
-        </form>
+            </Form.Group>
+            <Button className="button-primary" type="submit">
+                Submit
+            </Button>
+        </Form>
     );
-}; 
+};
