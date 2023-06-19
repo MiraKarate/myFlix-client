@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import './movie-view.scss';
 
-export const MovieView = ({ movie, onBackClick }) => {
-    console.log(movie)
+export const MovieView = ({ movie }) => {
+    const { movieId } = useParams();
+    const movie = movie.find((m) => m.id === movieId);
+
     return (
         <div className='blackborder'>
             <div>
@@ -24,7 +28,9 @@ export const MovieView = ({ movie, onBackClick }) => {
                 <span className="bold">Director: </span>
                 <span>{movie.director.Name}</span>
             </div>
-            <button onClick={onBackClick} className="button-primary" style={{ cursor: "pointer" }}> Back </button>
+            <Link to={`/`}>
+                <button className="button-primary" style={{ cursor: "pointer" }}> Back </button>
+            </Link>
         </div >
     );
 };
@@ -44,5 +50,4 @@ MovieView.propTypes = {
             bio: PropTypes.string
         }),
     }).isRequired,
-    onBackClick: PropTypes.func.isRequired,
 };
