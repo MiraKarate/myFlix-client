@@ -1,11 +1,73 @@
 import PropTypes from 'prop-types';
+import { Button, Col } from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { MovieCard } from '../movie-card/movie-card';
+import { useEffect, useState } from 'react';
 import './movie-view.scss';
 
-export const MovieView = ({ movie }) => {
+
+export const MovieView = ({ movies, user, token, updateUser }) => {
     const { movieId } = useParams();
     const movie = movie.find((m) => m.id === movieId);
+    //const similarMovies = movies.filter(movie => movie.genre === movie.genre ? true : false)
+    const [isFavorite, setIsFavorite] = useState(user.favoriteMovies.includes(movie.id));
+
+    useEffect(() => {
+        setIsFavorite(user.favoriteMovies.includes(movie.id));
+        window.scrollTo(0, 0);
+    }, [movieId])
+
+    const addFavorite = () => {
+        fetch(`https://myflix90.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+            method: "POST",
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    alert("Failed");
+                    return false;
+                }
+            })
+            .then(user => {
+                if (user) {
+                    alert("Successfully added to favorites");
+                    setIsFavorite(true);
+                    updateUser(user);
+                }
+            })
+            .catch(e => {
+                alert(e);
+            });
+    }
+
+    const removeFavorite = () => {
+        fetch(`https://myflix90.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    alert("Failed");
+                    return false;
+                }
+            })
+            .then(user => {
+                if (user) {
+                    alert("Successfully deleted from favorites");
+                    setIsFavorite(false);
+                    updateUser(user);
+                }
+            })
+            .catch(e => {
+                alert(e);
+            });
+    }
+
 
     return (
         <div className='blackborder'>
@@ -31,6 +93,10 @@ export const MovieView = ({ movie }) => {
             <Link to={`/`}>
                 <button className="button-primary" style={{ cursor: "pointer" }}> Back </button>
             </Link>
+            {isFavorite ?
+                <Button className="button-primary" onClick={removeFavorite}>Remove from favorites</Button>
+                : <Button className="button-primary" onClick={addFavorite}>Add to favorites</Button>
+            }
         </div >
     );
 };

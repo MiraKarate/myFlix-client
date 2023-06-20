@@ -12,8 +12,8 @@ export const LoginView = ({ onLoggedIn }) => {
         event.preventDefault();
 
         const data = {
-            Username: username,
-            Password: password
+            username,
+            password
         };
 
         fetch("https://myflix90.herokuapp.com/login", {
@@ -42,32 +42,37 @@ export const LoginView = ({ onLoggedIn }) => {
     // login form with submit button
     // handleSubmit is the callback of onSubmit, tells the login API to validate user and password
     return (
-        <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formUsername">
-                <Form.Label className="bold">Username:</Form.Label>
-                <Form.Control
-                    className="formControl"
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                    minLength="3"
-                />
-            </Form.Group>
+        <Card className="mt-2 mb-3">
+            <Card.Body>
+                <Card.Title >Log in</Card.Title>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group controlId="formUsername">
+                        <Form.Label className="bold">Username:</Form.Label>
+                        <Form.Control
+                            className="formControl"
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                            minLength="3"
+                        />
+                    </Form.Group>
 
-            <Form.Group controlId="formPassword">
-                <Form.Label className="bold">Password:</Form.Label>
-                <Form.Control
-                    className="formControl"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </Form.Group>
-            <Button className="button-primary" type="submit">
-                Submit
-            </Button>
-        </Form>
+                    <Form.Group controlId="formPassword">
+                        <Form.Label className="bold">Password:</Form.Label>
+                        <Form.Control
+                            className="formControl"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+                    <Button className="button-primary" type="submit">
+                        Submit
+                    </Button>
+                </Form>
+            </Card.Body>
+        </Card>
     );
 }; 

@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Card, Col, Form, Button } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
-import { UserInfo } from "./user-info";
-import { FavoriteMovies } from "./favorite-movies";
-import UpdateUser from "./update-user";
 import { navigate } from "react-router-dom";
-import './profile-view.scss';
-
-e
 
 export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
-    const [birthdate, setBirthdate] = useState("");
+    const [birthday, setBirthday] = useState("");
 
     let favoriteMovies = movies.filter(movie => user.favoriteMovies.includes(movie.id));
 
@@ -25,7 +19,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
             username,
             password,
             email,
-            birthdate
+            birthday
         }
 
         fetch(`https://myflix90.herokuapp.com/movies/users/${user.username}`, {
@@ -56,8 +50,8 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
     }
 
     const deleteAccount = () => {
-        console.log("doin")
-        fetch(`https://myflixapi-11d1.onrender.com/users/${user.username}`, {
+        console.log("delete account")
+        fetch(`https://myflix90.herokuapp.com/movies/users/${user.username}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         })
@@ -66,7 +60,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                     alert("Your account has been deleted. Good Bye!");
                     onLoggedOut();
                 } else {
-                    alert("Could not delete account");
+                    alert("Account could not be deleted");
                 }
             })
             .catch(e => {
@@ -81,17 +75,17 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
             <Col md={6}>
                 <Card className="mt-2 mb-3">
                     <Card.Body>
-                        <Card.Title >Your info</Card.Title>
+                        <Card.Title >Your Profile Info</Card.Title>
                         <p>Username: {user.username}</p>
                         <p>Email: {user.email}</p>
-                        <p>Birthdate: {user.birthdate.slice(0, 10)}</p>
+                        <p>Birthday: {user.birthday.slice(0, 10)}</p>
                     </Card.Body>
                 </Card>
-                <Button variant="danger" onClick={() => {
+                <Button className="button-primary" onClick={() => {
                     if (confirm("Are you sure?")) {
                         deleteAccount();
                     }
-                }}>Delete user account</Button>
+                }}>Delete Account</Button>
             </Col>
             <Col md={6}>
                 <Card className="mt-2 mb-3">
@@ -131,11 +125,11 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                                 />
                             </Form.Group>
                             <Form.Group>
-                                <Form.Label>Birthdate:</Form.Label>
+                                <Form.Label>Birthday:</Form.Label>
                                 <Form.Control
                                     type="date"
-                                    value={birthdate}
-                                    onChange={e => setBirthdate(e.target.value)}
+                                    value={birthday}
+                                    onChange={e => setBirthday(e.target.value)}
                                     required
                                     className="bg-light"
                                 />

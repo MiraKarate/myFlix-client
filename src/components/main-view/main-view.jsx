@@ -16,29 +16,20 @@ export const MainView = () => {
     const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
     const [movies, setMovies] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
+    const [viewMovies, setViewMovies] = useState("movies")
+    // const [searchTerm, setSearchTerm] = useState("");
     const [favoriteMovie, setFavoriteMovie] = useState([]);
-    //const [loading, setLoading] = useState(false);
-    const [loggedIn, setLoggedIn] = useState(false);
+    // const [loggedIn, setLoggedIn] = useState(false);
 
-    // if (!user && storedUser) {
-    //    setFavoriteMovie(storedUser.FavoriteMovies)
-    //}
+    const updateUser = user => {
+        setUser(user);
+        localStorage.setItem("user", JSON.stringify(user));
+    };
 
-    // if (!user && storedUser) {
-    //    setUser(storedUser);
-    //   setToken(storedToken);
-    //}
-
-    //favorite list 
-    // if (user) {
-    //    var favoriteMovieList = movie.filter((m) => favoriteMovie.includes(m._id));
-    // }
 
     useEffect(() => {
-        if (!(user && token)) {
-            return;
-        }
+        if (!token) return;
+
 
         fetch("https://myflix90.herokuapp.com/movies", {
             headers: { Authorization: `Bearer ${token}` },
@@ -48,7 +39,7 @@ export const MainView = () => {
                 const movies = data.map((movie) => {
                     return {
                         image: movie.ImagePath,
-                        id: movie.key,
+                        id: movie._id,
                         title: movie.Title,
                         description: movie.Description,
                         director: movie.Director,
@@ -60,15 +51,9 @@ export const MainView = () => {
             });
     }, [token]);
 
-    const onLoggedOut = () => {
-        setUser(null);
-        setToken(null);
-        localStorage.clear();
-    };
-
-    const filteredMovies = movies.filter((movie) =>
-        movie.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    //const filteredMovies = movies.filter((movie) =>
+    //  movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+    //);
 
 
     // user must login or signup
@@ -82,9 +67,9 @@ export const MainView = () => {
                     localStorage.clear();
                     window.location.reload();
                 }}
-            //onSearch={(query) => {
-            //    setViewMovies(movies.filter(movie => movie.title.toLowerCase().includes(query.toLowerCase())));
-            //}}
+                onSearch={(query) => {
+                    setViewMovies(movies.filter(movie => movie.title.toLowerCase().includes(query.toLowerCase())));
+                }}
             />
 
             <Row className="justify-content-md-center">
@@ -113,7 +98,11 @@ export const MainView = () => {
                                     <Navigate to="/" />
                                 ) : (
                                     <Col md={5}>
-                                        <LoginView onLoggedIn={(user) => setUser(user)} />
+                                        <LoginView onLoggedIn={(user, token) => {
+                                            setUser(user);
+                                            setToken(token);
+                                        }}
+                                        />
                                     </Col>
                                 )}
                             </>
@@ -135,10 +124,26 @@ export const MainView = () => {
                                             user={user}
                                             token={token}
                                             movies={movies}
+                                            updateUser={updateUser}
                                         />
                                     </Col>
                                 )}
                             </>
+                        }
+                    />
+
+                    <Route
+                        path="/profile"
+                        element={
+                            !user ? (
+                                <Navigate to="/login" replace />
+                            ) : (
+                                <ProfileView user={user} token={token} movies={movies} onLoggedOut={() => {
+                                    setUser(null);
+                                    setToken(null);
+                                    localStorage.clear();
+                                }} updateUser={updateUser} />
+                            )
                         }
                     />
 

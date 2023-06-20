@@ -3,18 +3,7 @@ import { Navbar, Container, Nav, Form, FormControl, Button } from 'react-bootstr
 import { Link } from 'react-router-dom';
 
 
-
-
-export const NavigationBar = ({ user, onLoggedOut, searchTerm, onSearchTermChange }) => {
-    const [loggedIn, setLoggedIn] = useState(false);
-
-    useEffect(() => {
-        if (user) {
-            setLoggedIn(true);
-        } else {
-            setLoggedIn(false);
-        }
-    }, [user]);
+export const NavigationBar = ({ user, onLoggedOut }) => {
 
     return (
         <Navbar bg="light" expand="lg">
