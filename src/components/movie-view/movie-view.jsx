@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Button, Col } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { MovieCard } from '../movie-card/movie-card';
@@ -9,17 +9,17 @@ import './movie-view.scss';
 
 export const MovieView = ({ movies, user, token, updateUser }) => {
     const { movieId } = useParams();
-    const movie = movie.find((m) => m.id === movieId);
+    const movie = movies.find((m) => m.id === movieId);
     //const similarMovies = movies.filter(movie => movie.genre === movie.genre ? true : false)
-    const [isFavorite, setIsFavorite] = useState(user.favoriteMovies.includes(movie.id));
+    const [isFavorite, setIsFavorite] = useState(user.FavoriteMovies.includes(movie.id));
 
     useEffect(() => {
-        setIsFavorite(user.favoriteMovies.includes(movie.id));
+        setIsFavorite(user.FavoriteMovies.includes(movie.id));
         window.scrollTo(0, 0);
     }, [movieId])
 
     const addFavorite = () => {
-        fetch(`https://myflix90.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+        fetch(`https://myflix90.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
             method: "POST",
             headers: { Authorization: `Bearer ${token}` }
         })
@@ -44,7 +44,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     }
 
     const removeFavorite = () => {
-        fetch(`https://myflix90.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+        fetch(`https://myflix90.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         })

@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { Button, Form, Row, Col, Container, CardGroup, Card } from "react-bootstrap/";
 
@@ -12,8 +13,8 @@ export const LoginView = ({ onLoggedIn }) => {
         event.preventDefault();
 
         const data = {
-            username,
-            password
+            Username: username,
+            Password: password
         };
 
         fetch("https://myflix90.herokuapp.com/login", {
@@ -31,7 +32,7 @@ export const LoginView = ({ onLoggedIn }) => {
                     localStorage.setItem("token", data.token);
                     onLoggedIn(data.user, data.token);
                 } else {
-                    alert("No such user");
+                    alert("Login failed");
                 }
             })
             .catch((e) => {
@@ -44,7 +45,7 @@ export const LoginView = ({ onLoggedIn }) => {
     return (
         <Card className="mt-2 mb-3">
             <Card.Body>
-                <Card.Title >Log in</Card.Title>
+                <Card.Title >Please log in here</Card.Title>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="formUsername">
                         <Form.Label className="bold">Username:</Form.Label>
@@ -55,6 +56,7 @@ export const LoginView = ({ onLoggedIn }) => {
                             onChange={(e) => setUsername(e.target.value)}
                             required
                             minLength="3"
+                            placeholder="Enter your username"
                         />
                     </Form.Group>
 
@@ -66,6 +68,8 @@ export const LoginView = ({ onLoggedIn }) => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
+                            placeholder="Enter your password"
+
                         />
                     </Form.Group>
                     <Button className="button-primary" type="submit">

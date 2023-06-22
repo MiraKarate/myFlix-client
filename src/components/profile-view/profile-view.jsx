@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Container, Row, Card, Col, Form, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Card, Col, Form, Button } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
-import { navigate } from "react-router-dom";
 
 export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) => {
 
@@ -10,19 +9,19 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
     const [email, setEmail] = useState("");
     const [birthday, setBirthday] = useState("");
 
-    let favoriteMovies = movies.filter(movie => user.favoriteMovies.includes(movie.id));
+    let favoriteMovies = movies.filter(movie => user.FavoriteMovies.includes(movie.id));
 
     const handleSubmit = event => {
         event.preventDefault();
 
         const data = {
-            username,
-            password,
-            email,
-            birthday
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
         }
 
-        fetch(`https://myflix90.herokuapp.com/movies/users/${user.username}`, {
+        fetch(`https://myflix90.herokuapp.com/users/${user.Username}`, {
             method: "PUT",
             body: JSON.stringify(data),
             headers: {
@@ -50,14 +49,14 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
     }
 
     const deleteAccount = () => {
-        console.log("delete account")
-        fetch(`https://myflix90.herokuapp.com/movies/users/${user.username}`, {
+        console.log("Account deleted")
+        fetch(`https://myflix90.herokuapp.com/users/${user.Username}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
                 if (response.ok) {
-                    alert("Your account has been deleted. Good Bye!");
+                    alert("Your account has successfully been deleted. Good Bye!");
                     onLoggedOut();
                 } else {
                     alert("Account could not be deleted");
@@ -76,9 +75,9 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                 <Card className="mt-2 mb-3">
                     <Card.Body>
                         <Card.Title >Your Profile Info</Card.Title>
-                        <p>Username: {user.username}</p>
-                        <p>Email: {user.email}</p>
-                        <p>Birthday: {user.birthday.slice(0, 10)}</p>
+                        <p>Username: {user.Username}</p>
+                        <p>Email: {user.Email}</p>
+                        <p>Birthday: {user.Birthday.slice(0, 10)}</p>
                     </Card.Body>
                 </Card>
                 <Button className="button-primary" onClick={() => {
@@ -134,13 +133,13 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                                     className="bg-light"
                                 />
                             </Form.Group>
-                            <Button className="mt-3" variant="primary" type="submit">Submit</Button>
+                            <Button className="button-primary" type="submit">Submit</Button>
                         </Form>
                     </Card.Body>
                 </Card>
             </Col>
             <Col md={12}>
-                <h3 className="mt-3 mb-3 text-light">Your favorite movies:</h3>
+                <h3 className="mt-3 mb-3">Your favorite movies</h3>
             </Col>
             {favoriteMovies.map(movie => (
                 <Col className="mb-4" key={movie.id} xl={2} lg={3} md={4} xs={6}>

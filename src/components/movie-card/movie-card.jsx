@@ -12,7 +12,7 @@ export const MovieCard = ({ movie }) => {
             <Card.Img variant="top" src={movie.image} />
             <Card.Body>
                 <Card.Title>{movie.title}</Card.Title>
-                <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
+                <Link to={`/movies/${encodeURIComponent(movie.id)}`} className="mt-auto">
                     <Button className="button-primary">See more</Button>
                 </Link>
             </Card.Body>
