@@ -78,13 +78,14 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                         <p>Username: {user.Username}</p>
                         <p>Email: {user.Email}</p>
                         <p>Birthday: {user.Birthday.slice(0, 10)}</p>
+                        <Button className="button-primary" onClick={() => {
+                            if (confirm("Are you sure?")) {
+                                deleteAccount();
+                            }
+                        }}>Delete Account</Button>
                     </Card.Body>
                 </Card>
-                <Button className="button-primary" onClick={() => {
-                    if (confirm("Are you sure?")) {
-                        deleteAccount();
-                    }
-                }}>Delete Account</Button>
+
             </Col>
             <Col md={6}>
                 <Card className="mt-2 mb-5">
