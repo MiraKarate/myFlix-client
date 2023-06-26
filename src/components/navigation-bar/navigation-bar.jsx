@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 export const NavigationBar = ({ user, onLoggedOut }) => {
 
     return (
-        <Navbar bg="light" expand="lg">
-            <Container>
+        <Navbar data-bs-theme="dark" bg="black" fixed="top" expand="lg">
+            <Container fluid>
                 <Navbar.Brand as={Link} to="/">MyFlix</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Collapse id="navbarScroll">
                     <Nav className="me-auto">
                         {!user && (
                             <>

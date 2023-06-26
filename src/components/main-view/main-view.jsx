@@ -59,7 +59,7 @@ export const MainView = () => {
     // user must login or signup
     return (
         <BrowserRouter>
-            <NavigationBar
+            <NavigationBar className="justify-content-md-center"
                 user={user}
                 onLoggedOut={() => {
                     setUser(null);
@@ -72,7 +72,7 @@ export const MainView = () => {
                 }}
             />
 
-            <Row className="justify-content-md-center">
+            <Row className="justify-content-md-center mt-5">
                 <Routes>
 
                     <Route

@@ -87,7 +87,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                 }}>Delete Account</Button>
             </Col>
             <Col md={6}>
-                <Card className="mt-2 mb-3">
+                <Card className="mt-2 mb-5">
                     <Card.Body>
                         <Card.Title>Update your info</Card.Title>
                         <Form onSubmit={handleSubmit}>
@@ -139,12 +139,15 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                 </Card>
             </Col>
             <Col md={12}>
-                <h3 className="mt-3 mb-3">Your favorite movies</h3>
+                <Card>
+                    <h3 className="mt-3 mb-3 ps-3">Your favorite movies</h3>
+                </Card>
             </Col>
             {favoriteMovies.map(movie => (
-                <Col className="mb-4" key={movie.id} xl={2} lg={3} md={4} xs={6}>
+                <Col className="mb-4 mt-4" key={movie.id} xl={2} lg={3} md={4} xs={6}>
                     <MovieCard movie={movie} />
-                </Col>
+
+                </Col >
             ))}
         </>
     );

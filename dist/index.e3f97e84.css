@@ -13281,7 +13281,7 @@ textarea.form-control-lg {
   background-color: #000;
   border: 2px solid #000;
   border-radius: 4px;
-  margin-top: 10px;
+  margin: 10px;
   padding: 4px 12px;
 }
 
@@ -13292,6 +13292,7 @@ textarea.form-control-lg {
 .formControl {
   background-color: #e5ecf4;
   border: 1px solid #000;
+  padding-top: 20px;
 }
 
 .title {

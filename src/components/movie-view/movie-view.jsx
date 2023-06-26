@@ -72,7 +72,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     return (
         <div className='blackborder'>
             <div>
-                <img src={movie.image} className="w-100" />
+                <img src={movie.image} className="img-fluid" />
             </div>
             <div className='margin'>
                 <span className="bold">Title: </span>
@@ -92,6 +92,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
             </div>
             <Link to={`/`}>
                 <button className="button-primary" style={{ cursor: "pointer" }}> Back </button>
+
             </Link>
             {isFavorite ?
                 <Button className="button-primary" onClick={removeFavorite}>Remove from favorites</Button>
