@@ -20,6 +20,7 @@ export const MainView = () => {
     // const [searchTerm, setSearchTerm] = useState("");
     const [favoriteMovie, setFavoriteMovie] = useState([]);
     // const [loggedIn, setLoggedIn] = useState(false);
+    const [filteredMovies, setFilteredMovies] = useState([]);
 
     const updateUser = user => {
         setUser(user);
@@ -51,9 +52,18 @@ export const MainView = () => {
             });
     }, [token]);
 
-    //const filteredMovies = movies.filter((movie) =>
-    //  movie.title.toLowerCase().includes(searchTerm.toLowerCase())
-    //);
+    //search
+    useEffect(() => {
+        setFilteredMovies(movies);
+    }, [movies]);
+
+    const handleSearchInput = (e) => {
+        const searchWord = e.target.value.toLowerCase();
+        let tempArray = movies.filter((m) =>
+            m.title.toLowerCase().includes(searchWord)
+        );
+        setFilteredMovies(tempArray);
+    };
 
 
     // user must login or signup
@@ -67,9 +77,12 @@ export const MainView = () => {
                     localStorage.clear();
                     window.location.reload();
                 }}
-                onSearch={(query) => {
-                    setViewMovies(movies.filter(movie => movie.title.toLowerCase().includes(query.toLowerCase())));
-                }}
+                handleSearchInput={handleSearchInput}
+
+            //const filteredMovies = movies.filter((movie) =>
+            //  movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+            //);
+
             />
 
             <Row className="justify-content-md-center mt-5">
@@ -157,7 +170,7 @@ export const MainView = () => {
                                     <Col> The list is empty!</Col>
                                 ) : (
                                     <>
-                                        {movies.map((movie) => (
+                                        {filteredMovies.map((movie) => (
                                             <Col className="mb-4" key={movie.id} md={3}>
                                                 <MovieCard movie={movie} />
                                             </Col>
