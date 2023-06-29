@@ -70,7 +70,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
 
 
     return (
-        <div className='blackborder'>
+        <div className='blackborder' >
             <div>
                 <img src={movie.image} className="img-fluid" />
             </div>
@@ -102,4 +102,3 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     );
 };
 
-// Define the prop types this component should have
