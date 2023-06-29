@@ -11,10 +11,10 @@ let movieSchema = mongoose.Schema({
   },
   Genre: {
     Name: String,
-    Description: String
+    Description: String,
   },
   ImagePath: String,
-  Featured: Boolean
+  Featured: Boolean,
 });
 
 let userSchema = mongoose.Schema({
