@@ -1,11 +1,12 @@
-
 import React from "react";
 import PropTypes from "prop-types";// Here you import the PropTypes library
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import './movie-card.scss';
+import { FavoriteBtn } from "../favorite-btn/favorite-btn";
 
-export const MovieCard = ({ movie }) => {
+
+export const MovieCard = ({ movie }, { updateUser }) => {
     return (
         <Card className="h-100">
             <Card.Img variant="top" src={movie.image} />
@@ -14,6 +15,7 @@ export const MovieCard = ({ movie }) => {
                 <Link to={`/movies/${encodeURIComponent(movie.id)}`} className="mt-auto">
                     <Button className="button-primary">See more</Button>
                 </Link>
+                <FavoriteBtn movieId={movie.id} />
             </Card.Body>
         </Card>
     );

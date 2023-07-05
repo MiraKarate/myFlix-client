@@ -27390,7 +27390,8 @@ var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _movieCardScss = require("./movie-card.scss");
-const MovieCard = ({ movie  })=>{
+var _favoriteBtn = require("../favorite-btn/favorite-btn");
+const MovieCard = ({ movie  }, { updateUser  })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         className: "h-100",
         children: [
@@ -27399,7 +27400,7 @@ const MovieCard = ({ movie  })=>{
                 src: movie.image
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 11,
+                lineNumber: 12,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -27408,7 +27409,7 @@ const MovieCard = ({ movie  })=>{
                         children: movie.title
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 13,
+                        lineNumber: 14,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -27419,24 +27420,31 @@ const MovieCard = ({ movie  })=>{
                             children: "See more"
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 15,
+                            lineNumber: 16,
                             columnNumber: 21
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 14,
+                        lineNumber: 15,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _favoriteBtn.FavoriteBtn), {
+                        movieId: movie.id
+                    }, void 0, false, {
+                        fileName: "src/components/movie-card/movie-card.jsx",
+                        lineNumber: 18,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 12,
+                lineNumber: 13,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 10,
+        lineNumber: 11,
         columnNumber: 9
     }, undefined);
 };
@@ -27456,7 +27464,7 @@ $RefreshReg$(_c, "MovieCard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","./movie-card.scss":"d6HH4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7wKI2":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","./movie-card.scss":"d6HH4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../favorite-btn/favorite-btn":"6j91O"}],"7wKI2":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -46421,7 +46429,67 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"fb2063567ae073d9":"786KC"}],"ggaUx":[function(require,module,exports) {
+},{"fb2063567ae073d9":"786KC"}],"6j91O":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$4e8d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$4e8d.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "FavoriteBtn", ()=>FavoriteBtn);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _reactBootstrap = require("react-bootstrap");
+var _react = require("react");
+var _s = $RefreshSig$();
+const FavoriteBtn = ({ movieId  })=>{
+    _s();
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("token");
+    const [isFavorite, setIsFavorite] = (0, _react.useState)(false);
+    (0, _react.useEffect)(()=>{
+        setIsFavorite(user.FavoriteMovies.includes(movieId));
+    }, [
+        movieId
+    ]);
+    const FavoriteBtnClicked = ()=>{
+        const APIUrl = "https://myflix90.herokuapp.com";
+        const methodType = isFavorite ? "DELETE" : "POST";
+        fetch(`${APIUrl}/users/${user.Username}/movies/${movieId}`, {
+            method: methodType,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>response.text()).then((data)=>{
+            localStorage.setItem("user", data);
+            setIsFavorite(!isFavorite); // toggle the favorite state
+        }).catch((error)=>console.error(error));
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+        className: "button-primary",
+        onClick: ()=>FavoriteBtnClicked(),
+        children: [
+            !isFavorite && "Add to favorites",
+            isFavorite && "Remove from favorites"
+        ]
+    }, void 0, true, {
+        fileName: "src/components/favorite-btn/favorite-btn.jsx",
+        lineNumber: 32,
+        columnNumber: 9
+    }, undefined);
+};
+_s(FavoriteBtn, "lh6fxD9+vLbuebOO0x4Y5WwBqk4=");
+_c = FavoriteBtn;
+var _c;
+$RefreshReg$(_c, "FavoriteBtn");
+
+  $parcel$ReactRefreshHelpers$4e8d.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"ggaUx":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
