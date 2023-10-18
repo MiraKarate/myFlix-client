@@ -6,7 +6,7 @@ The myFlix Client-Side application is a web-based movie application built using 
 It interacts with a server-side application, which provides a RESTful API for managing and retrieving movie data.  
 The interface the users use when making requests to—and receiving responses from—the server-side is being created. The
 client-side of the myFlix app includes several interface views (built using the React library) that will
-handle data through the (previously defined) REST API endpoints.
+handle data through the (previously defined) REST API endpoints.  
 This README provides an overview of the project structure and instructions for getting started with the client-side application.
 
 
