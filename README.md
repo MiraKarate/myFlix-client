@@ -45,3 +45,35 @@ handle data through the (previously defined) REST API endpoints.
 
 <img width="1501" alt="myfliy-app-profile" src="https://github.com/MiraKarate/myFlix-client/assets/124045048/49482eb0-b0c0-4aba-98c4-72fd3c665f23">
 
+
+## Getting Started
+
+To run the myFlix client-side application locally, follow these steps:
+ 
+Clone this repository to your local machine:
+
+```bash
+git clone https://github.com/your-username/myFlix-client.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd myFlix-client
+```
+
+Install project dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm start
+```
+
+Open your web browser and access the client-side application at http://localhost:3000.
+
+Explore the application's features, interact with it, and customize it to your specific project requirements.
