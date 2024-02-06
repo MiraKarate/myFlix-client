@@ -27464,7 +27464,7 @@ $RefreshReg$(_c, "MovieCard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","./movie-card.scss":"d6HH4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../favorite-btn/favorite-btn":"6j91O"}],"7wKI2":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","./movie-card.scss":"d6HH4","../favorite-btn/favorite-btn":"6j91O","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7wKI2":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -46296,7 +46296,67 @@ function getTargetMatch(matches, location) {
     return pathMatches[pathMatches.length - 1];
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d6HH4":[function() {},{}],"km3Ru":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d6HH4":[function() {},{}],"6j91O":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$4e8d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$4e8d.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "FavoriteBtn", ()=>FavoriteBtn);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _reactBootstrap = require("react-bootstrap");
+var _react = require("react");
+var _s = $RefreshSig$();
+const FavoriteBtn = ({ movieId  })=>{
+    _s();
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("token");
+    const [isFavorite, setIsFavorite] = (0, _react.useState)(false);
+    (0, _react.useEffect)(()=>{
+        setIsFavorite(user.FavoriteMovies.includes(movieId));
+    }, [
+        movieId
+    ]);
+    const FavoriteBtnClicked = ()=>{
+        const APIUrl = "https://myflix90.herokuapp.com";
+        const methodType = isFavorite ? "DELETE" : "POST";
+        fetch(`${APIUrl}/users/${user.Username}/movies/${movieId}`, {
+            method: methodType,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>response.text()).then((data)=>{
+            localStorage.setItem("user", data);
+            setIsFavorite(!isFavorite); // toggle the favorite state
+        }).catch((error)=>console.error(error));
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+        className: "button-primary",
+        onClick: ()=>FavoriteBtnClicked(),
+        children: [
+            !isFavorite && "Add to favorites",
+            isFavorite && "Remove from favorites"
+        ]
+    }, void 0, true, {
+        fileName: "src/components/favorite-btn/favorite-btn.jsx",
+        lineNumber: 32,
+        columnNumber: 9
+    }, undefined);
+};
+_s(FavoriteBtn, "lh6fxD9+vLbuebOO0x4Y5WwBqk4=");
+_c = FavoriteBtn;
+var _c;
+$RefreshReg$(_c, "FavoriteBtn");
+
+  $parcel$ReactRefreshHelpers$4e8d.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"km3Ru":[function(require,module,exports) {
 "use strict";
 var Refresh = require("fb2063567ae073d9");
 function debounce(func, delay) {
@@ -46429,67 +46489,7 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"fb2063567ae073d9":"786KC"}],"6j91O":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$4e8d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$4e8d.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "FavoriteBtn", ()=>FavoriteBtn);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _reactBootstrap = require("react-bootstrap");
-var _react = require("react");
-var _s = $RefreshSig$();
-const FavoriteBtn = ({ movieId  })=>{
-    _s();
-    const user = JSON.parse(localStorage.getItem("user"));
-    const token = localStorage.getItem("token");
-    const [isFavorite, setIsFavorite] = (0, _react.useState)(false);
-    (0, _react.useEffect)(()=>{
-        setIsFavorite(user.FavoriteMovies.includes(movieId));
-    }, [
-        movieId
-    ]);
-    const FavoriteBtnClicked = ()=>{
-        const APIUrl = "https://myflix90.herokuapp.com";
-        const methodType = isFavorite ? "DELETE" : "POST";
-        fetch(`${APIUrl}/users/${user.Username}/movies/${movieId}`, {
-            method: methodType,
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>response.text()).then((data)=>{
-            localStorage.setItem("user", data);
-            setIsFavorite(!isFavorite); // toggle the favorite state
-        }).catch((error)=>console.error(error));
-    };
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-        className: "button-primary",
-        onClick: ()=>FavoriteBtnClicked(),
-        children: [
-            !isFavorite && "Add to favorites",
-            isFavorite && "Remove from favorites"
-        ]
-    }, void 0, true, {
-        fileName: "src/components/favorite-btn/favorite-btn.jsx",
-        lineNumber: 32,
-        columnNumber: 9
-    }, undefined);
-};
-_s(FavoriteBtn, "lh6fxD9+vLbuebOO0x4Y5WwBqk4=");
-_c = FavoriteBtn;
-var _c;
-$RefreshReg$(_c, "FavoriteBtn");
-
-  $parcel$ReactRefreshHelpers$4e8d.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"ggaUx":[function(require,module,exports) {
+},{"fb2063567ae073d9":"786KC"}],"ggaUx":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
