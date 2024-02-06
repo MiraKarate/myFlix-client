@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>myFlix REST API</title>
+    <style>
+      body{
+        font-family: 'Courier New', Courier, monospace;
+        margin: 3em;
+      }
+      table, th, td {
+        border: 1px solid #000000;
+        border-collapse: collapse;
+        padding: .3em .5em; 
+        text-align: center;
+      }
+
+      th {
+        font-weight: bold;
+      }
+
+      </style>
+  </head>
+
+  <body>
+    <h1>Documentation Page: Movie API myFlix</h1>
+    <h4> Description</h4>
+    <p> The server-side component of a “movies” web application is beeing built. 
+    The web application provides users with access to information about different movies, directors, 
+    and genres. Users are able to sign up, update their personal information, and create a list 
+    of their favorite movies.</p>
+
+    <!-- List of URL Endpoints and Request Methods-->
+    <h4>Key Features</h4> 
+    <ul> 
+      <li> Return a list of ALL movies to the user</li>
+      <li> Return data (description, genre, director, image URL, whether it\'s featured or not) about a
+          single movie by title to the user</li>
+      <li> Return data about a genre (description) by name/title (e.g., “Thriller”)</li>
+      <li> Return data about a director (bio, birth year, death year) by name</li>
+      <li> Allow new users to register</li>
+      <li> Allow users to update their user info (username)</li>
+      <li> Allow users to add a movie to their list of favorites (showing only a text that a movie has been added—more on this later)</li>
+      <li> Allow users to remove a movie from their list of favorites  (showing only a text that a movie has been removed—more on this later)</li>
+      <li> Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)</li>
+    </ul>
+
+    <table>
+      <tr>
+        <th>Business Logic</th>
+        <th>URL</th>
+        <th>HTTP Method</th>
+        <th>Request body data format</th>
+        <th>Response body data format</th>
+      </tr>
+      <tr>
+        <td>Return a list of ALL movies to the user</td>
+        <td>/movies</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>A JSON object holding data about all the movies</td>
+      </tr>
+      <tr>
+        <td>Return data about a single movie by title to the user</td>
+        <td>/movies/:title</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>A JSON object holding data about a single requested movie, containg: <br> 
+          {"Title":"A Star Is Born", <br> 
+          "Description":"A Star Is Born is a 2018 American romantic drama film produced and directed by Bradley Cooper ...",<br> 
+          "Genre":{ <br> 
+                    "Name":"Romantic Drama",<br> 
+                    "Description":"Romance films, romance movies, or ship films involve romantic love stories recorded ...",<br> 
+                  },<br> 
+          "Director"{<br> 
+                    "Bio":" Bradley Charles Cooper (born January 5, 1975) ..."<br> 
+                    "Birth":1975<br> 
+                    },<br> 
+          }
+          </td>
+      </tr>
+      <tr>
+        <td> Return data about a genre (description) by name/title (e.g., “Fantasy”)</td>
+        <td>/movies/genre/:genreName</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>A JSON object holding data about a genre (description), containg: <br>
+          Genre: { <br>
+            Name: 'Fantasy', <br>
+            Description: 'Fantasy is a subgenre of speculative fiction and is distinguished from the genres of science fiction and ...',<br>
+          },<br>
+        </td>
+      </tr>
+      <tr>
+        <td>Return data about a director (bio, birth year, death year) by name</td>
+        <td>/movies/directors/:directorName</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>A JSON object holding data about a director, containing: <br>
+          Director: { <br>
+            Name: 'Steven Spielberg', <br>
+            Bio: 'Steven Allan Spielberg is an American filmmaker. A major figure of the New Hollywood era ...', <br>
+            Birth: 1946,<br>
+          },<br>
+        </td>
+      </tr>
+      <tr>
+        <td>Allow new users to register</td>
+        <td>/users</td>
+        <td>POST</td>
+        <td>A JSON object holding data about the user to register/add, structed like:<br> 
+          {<br> 
+            Username: String,<br>
+            Password: String,<br>
+            Email: String,<br>
+            Birthday: Date,<br> 
+        }
+        </td>
+        <td>A JSON object holding data about the new user, including an ID: <br> 
+          {<br> 
+            {
+              "_id": "64538918a28056b722eaeaf0",<br>
+              "Username": "Lottalu",<br>
+              "Password": "watching5",<br>
+              "Email": "lotta@gmail.com",<br>
+              "Birthday": "1993-05-03T00:00:00.000Z",<br>
+              "FavoriteMovies": []<br>
+          },<br> 
+          }<br> 
+        </td>
+      </tr>
+      <tr>
+        <td>Allow users to update their user info (username)</td>
+        <td>/users/:Username</td>
+        <td>PUT</td>
+        <td>A JSON object holding data about the user to update, structed like:<br> 
+            {<br> 
+              "_id": "64538918a28056b722eaeaf0",<br>
+              "Username": "Lottalu",<br>
+              "Password": "watching333",<br>
+              "Email": "lotta@gmail.com",<br>
+              "Birthday": "1993-05-03T00:00:00.000Z",<br>
+              "FavoriteMovies": []<br>
+          },<br> 
+        </td>
+        <td>A JSON object holding data about the updated user</td>
+      </tr>
+      <tr>
+        <td>Allow users to add a movie to their list of favorites</td>
+        <td>/users/:Username/movies/:MovieID</td>
+        <td>POST</td>
+        <td>none </td>
+        <td>A text message that a movie has been added</td>
+      </tr> 
+      <tr>
+        <td>Allow users to remove a movie from their list of favorites</td>
+        <td>/users/:Username/movies/:MovieID</td>
+        <td>DELETE</td>
+        <td>None</td>
+        <td>A text message indicating whether the movie was successfully removed from list of favorites</td>
+      </tr>
+      <tr>
+        <td>Allow existing users to deregister</td>
+        <td>/users/:Username</td>
+        <td>DELETE</td>
+        <td>None</td>
+        <td>A text message indicating whether a user ID has been removed</td>
+      </tr>
+    </table>
+  </body>
+</html>
